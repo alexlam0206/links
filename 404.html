@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>404 - Page Not Found</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      --text-color: #e2e8f0;
+      --link-bg: rgba(255, 255, 255, 0.05);
+      --accent-color: #3b82f6;
+      --accent-gradient: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      --border-color: rgba(255, 255, 255, 0.1);
+      --glow-color: rgba(59, 130, 246, 0.5);
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        --text-color: #1e293b;
+        --link-bg: rgba(255, 255, 255, 0.7);
+        --border-color: rgba(0, 0, 0, 0.1);
+        --glow-color: rgba(59, 130, 246, 0.3);
+      }
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-color);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 50%, var(--glow-color) 0%, transparent 50%);
+      opacity: 0.15;
+      pointer-events: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 680px;
+      margin: 2rem;
+      padding: 2.5rem;
+      background: var(--link-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 32px;
+      border: 1px solid var(--border-color);
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      animation: container-appear 0.5s ease-out;
+    }
+
+    .error-code {
+      font-size: 8rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 1rem;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+      display: inline-block;
+    }
+
+    .error-code::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: var(--accent-gradient);
+      filter: blur(20px);
+      opacity: 0.3;
+      z-index: -1;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    .error-message {
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .home-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      background: var(--link-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      color: var(--text-color);
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .home-link::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--accent-gradient);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+
+    .home-link:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent-color);
+      box-shadow: 
+        0 8px 20px rgba(59, 130, 246, 0.2),
+        0 0 0 1px rgba(59, 130, 246, 0.1);
+    }
+
+    .home-link:hover::before {
+      opacity: 0.1;
+    }
+
+    .home-icon {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .home-link:hover .home-icon {
+      transform: translateX(-2px);
+    }
+
+    @keyframes container-appear {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes glow {
+      from {
+        filter: blur(20px);
+        opacity: 0.3;
+      }
+      to {
+        filter: blur(30px);
+        opacity: 0.5;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+
+      .error-code {
+        font-size: 6rem;
+      }
+
+      .error-message {
+        font-size: 1.25rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="error-code">404</div>
+    <p class="error-message">Oops! Looks like you've ventured into the void.</p>
+    <a href="index.html" class="home-link">
+      <svg class="home-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M9 22V12h6v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Back to Home
+    </a>
+  </div>
+</body>
+</html> 
